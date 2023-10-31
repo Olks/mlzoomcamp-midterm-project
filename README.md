@@ -40,7 +40,7 @@ The final dataset that will be used in the project have the following fields:
 ## Original Dataset
 
 
-The original dataset comes from Kaggle competition "Child Mind Institute - Detect Sleep States - data".<br>
+The original dataset comes from Kaggle competition ["Child Mind Institute - Detect Sleep States - data"](https://www.kaggle.com/competitions/child-mind-institute-detect-sleep-states/data).<br>
 It comprises of every 5 seconds accelerometer signals transformed into two variables:
 - <b>ENMO</b>: The Euclidean Norm Minus One (ENMO) with negative values rounded to zero.
   <br>It has been shown to correlate with the magnitude of acceleration and human energy expenditure.
