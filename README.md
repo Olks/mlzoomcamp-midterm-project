@@ -13,7 +13,7 @@ This is a simplified problem of the one from the Kaggle competition - ["Child Mi
 For this project we use the subset of Kaggle data.<br>
 - 120 out of 277 series_id,
 - 3 first days of of each 120 series (originally they have about 14 or more days).<br>
-- Full minutes statistics (mean, max, min, std).<br>
+- Full minutes statistics - mean, max, min and std (originally those are every 5 seconds vaues).<br>
 
 Below, there is a plot for one series_id. 
 <img src="series_plot.png"/>
