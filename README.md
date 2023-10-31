@@ -10,11 +10,10 @@ This is a simplified problem of the one from the Kaggle competition - ["Child Mi
 
 
 ## Project Dataset
-Original Kaggle data is too large to be trained on a single computer so here only the subset of data is included.<br>
+For this project we use the subset of Kaggle data.<br>
 - 120 out of 277 series_id,
 - 3 first days of of each 120 series (originally they have about 14 or more days).<br>
-
-Additionally, to decrease the size of the dataset we calculate one minute values (mean, max, min, std).<br>
+- Full minutes statistics (mean, max, min, std).<br>
 
 Below, there is a plot for one series_id. 
 <img src="series_plot.png"/>
