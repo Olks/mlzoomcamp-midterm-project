@@ -15,6 +15,10 @@ Original Kaggle data is too large to be trained on a single computer so here onl
 - 3 first days of of each 120 series (originally they have about 14 or more days).<br>
 
 Additionally, to decrease the size of the dataset we calculate one minute values (mean, max, min, std).<br>
+
+Below, there is a plot for one series_id. 
+<img src="series_plot.png"/>
+
 The final dataset that will be used in the project have the following fields:
 
 | variable | describtion |
@@ -42,12 +46,11 @@ It comprises of every 5 seconds accelerometer signals transformed into two varia
   <br>It has been shown to correlate with the magnitude of acceleration and human energy expenditure.
   <br>ENMO is computed as follows:<br>
   <!-- width="350" height="350" -->
-  <img src="enmo.jpg" width="410" height="100"/>
+  <img src="enmo.jpg" width="310" height="70"/>
 - <b>anglez</b>: Z-angle, computed using the equation below; corresponds to the angle between the accelerometer axis perpendicular to the skin surface and the horizontal plane.
   <br>Any change (or lack of change) in the z-angle over successive time intervals may be an indicator of posture change.<br>
-  <img src="anglez.jpg" width="400" height="100"/>
- <!-- width="1400" height="1000" -->
-<img src="series_plot.png"/>
+  <img src="anglez.jpg" width="300" height="70"/>
+
 
 
 
