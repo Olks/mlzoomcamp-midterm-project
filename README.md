@@ -10,12 +10,13 @@ Training dataset comprises of every 5 seconds accelerometer signals transformed 
 - <b>ENMO</b>: The Euclidean Norm Minus One (ENMO) with negative values rounded to zero.
   <br>It has been shown to correlate with the magnitude of acceleration and human energy expenditure.
   <br>ENMO is computed as follows:<br>
-  <img src="enmo.jpg" width="350" height="350" />
+  <!-- width="350" height="350" -->
+  <img src="enmo.jpg"/>
 - <b>anglez</b>: Z-angle, computed using the equation below; corresponds to the angle between the accelerometer axis perpendicular to the skin surface and the horizontal plane.
   <br>Any change (or lack of change) in the z-angle over successive time intervals may be an indicator of posture change.<br>
-  <img src="anglez.jpg" width="350" height="350" />
-
-<img src="series_plot.png" width="1400" height="1000" />
+  <img src="anglez.jpg"/>
+ <!-- width="1400" height="1000" -->
+<img src="series_plot.png"/>
 
 It is too large to train a model on it with a single computer so here only the subset of data is included.<br>
 Additionally, to decrease the size of the dataset we calculate one minute statsistics.<br>
