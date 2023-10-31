@@ -5,8 +5,8 @@ The goal of this project is to detect sleep from the data recorded by wrist-worn
 This is a simplified problem of the one from the Kaggle competition - ["Child Mind Institute - Detect Sleep States - overview"](https://www.kaggle.com/competitions/child-mind-institute-detect-sleep-states).
 
 ## Contents:
-1. [Exploratory Data Analysis - Notebook](https://github.com/Olks/mlzoomcamp-midterm-project/blob/main/sleep_detection_eda.ipynb.jpg)
-2. [Model Training - Notebook](https://github.com/Olks/mlzoomcamp-midterm-project/blob/main/model_training.ipynb.jpg)
+1. [Exploratory Data Analysis - Notebook](https://github.com/Olks/mlzoomcamp-midterm-project/blob/main/sleep_detection_eda.ipynb)
+2. [Model Training - Notebook](https://github.com/Olks/mlzoomcamp-midterm-project/blob/main/model_training.ipynb)
 
 
 ## Project Dataset
