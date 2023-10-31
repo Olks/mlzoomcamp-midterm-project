@@ -11,10 +11,10 @@ Training dataset comprises of every 5 seconds accelerometer signals transformed 
   <br>It has been shown to correlate with the magnitude of acceleration and human energy expenditure.
   <br>ENMO is computed as follows:<br>
   <!-- width="350" height="350" -->
-  <img src="enmo.jpg" width="350" height="100"/>
+  <img src="enmo.jpg" width="410" height="100"/>
 - <b>anglez</b>: Z-angle, computed using the equation below; corresponds to the angle between the accelerometer axis perpendicular to the skin surface and the horizontal plane.
   <br>Any change (or lack of change) in the z-angle over successive time intervals may be an indicator of posture change.<br>
-  <img src="anglez.jpg" width="300" height="100"/>
+  <img src="anglez.jpg" width="400" height="100"/>
  <!-- width="1400" height="1000" -->
 <img src="series_plot.png"/>
 
