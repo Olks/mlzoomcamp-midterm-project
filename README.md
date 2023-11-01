@@ -13,10 +13,10 @@ This is a simplified problem of the one from the Kaggle competition - ["Child Mi
 For this project we use the subset of Kaggle data.<br>
 - 120 out of 277 series_id,
 - 3 first days of of each 120 series (originally they have about 14 or more days).<br>
-- Full minutes statistics - mean, max, min and std (originally those are every 5 seconds vaues).<br>
+- One minutes means of "anglez" and "enmo" features (originally those are every 5 seconds vaues).<br>
 
 Below, there is a plot for one series_id. 
-<img src="series_plot.png"/>
+<img src="series_plot.png" width="1500" height="350"/>
 
 The final dataset that will be used in the project have the following fields:
 
@@ -24,16 +24,9 @@ The final dataset that will be used in the project have the following fields:
 |:---|:---|
 | series_id | Unique identifier for each accelerometer series. |
 | step | An integer timestep for each observation within a series. |
-|dt_minute| Observation timestamp truncated to full minutes. |
-|anglez_mean | One minute mean of anglez values. While the original data contains every 5 seconds data then here we have the mean of 12 signals. |
-|anglez_std | One minute standard deviation of anglez values. While the original data contains every 5 seconds data then here we have the standard deviation of 12 signals.	
-| anglez_max  | One minute maximum of anglez values. While the original data contains every 5 seconds data then here we have the maximum value of 12 signals. |	
-| anglez_min | One minute maximum of anglez values. While the original data contains every 5 seconds data then here we have the maximum value of 12 signals. |	
-| enmo_mean	| One minute mean of enmo values. While the original data contains every 5 seconds data then here we have the mean of 12 signals. |
-| enmo_max | One minute maximum of enmo values. While the original data contains every 5 seconds data then here we have the maximum value of 12 signals. |	
-| enmo_min | One minute minumum of enmo values. While the original data contains every 5 seconds data then here we have the minimum value of 12 signals. |	
-| anglez_1st_diffs_sum | One minute sum of first differences of anglez values. |
-| enmo_1st_diffs_sum | One minute sum of first differences of enmo values. |	
+| dt_minute | Observation timestamp truncated to full minutes. |
+| anglez | One minute mean of anglez values. While the original data contains every 5 seconds data, here we have the mean of 12 signals. |
+| enmo	| One minute mean of enmo values multiplied by 1000. While the original data contains every 5 seconds data, here we have the mean of 12 signals. |
 | <b>target</b> | The label of one of three values: <b>0 - awake, 1 - asleep, 2 - device not worn.</b> |
 
 ## Original Dataset
