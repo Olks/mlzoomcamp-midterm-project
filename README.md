@@ -4,6 +4,23 @@ This is a midterm project of ML Engineering Zoomcamp by DataTalks - Cohort 2023
 The goal of this project is to detect sleep from the data recorded by wrist-worn accelerometer for sleep monitoring.<br>
 This is a simplified problem of the one from the Kaggle competition - ["Child Mind Institute - Detect Sleep States - overview"](https://www.kaggle.com/competitions/child-mind-institute-detect-sleep-states).
 
+### ML solution
+This is a <b>multiclass classification problem</b>. We distinct three target states:
+- asleep (1)
+- awake (0)
+- not-wear (2)
+
+Models that are trained in the project:
+- <b>Decision Three</b> (with hyperparametes tuning)
+- <b>XGBoost</b> (with hyperparametes tuning)
+
+#### Features
+We have just 2 basic features so we calculate additionally:
+- rolling values for a multiple time windows,
+- "night" variable indicating most common hours for sleep time.
+
+We compute corelations to exlude features that are highly correlated with some others.
+
 ## Contents:
 1. [Exploratory Data Analysis - Notebook](https://github.com/Olks/mlzoomcamp-midterm-project/blob/main/sleep_detection_eda.ipynb)
 2. [Model Training - Notebook](https://github.com/Olks/mlzoomcamp-midterm-project/blob/main/model_training.ipynb)

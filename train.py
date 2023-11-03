@@ -124,10 +124,11 @@ def get_f1_score(y_test_pred,y_test):
 
 # Validation
 val_sets = k_fold_split(df, K_FOLD_SPLITS)
-val_sets_copy = val_sets.copy()
+
 for split in range(K_FOLD_SPLITS):
+    val_sets_copy = val_sets.copy()
     df_val = val_sets_copy.pop(split)
-    df_train = pd.concat(val_sets)
+    df_train = pd.concat(val_sets_copy)
 
     
     y_val = df_val[LABELS].values
