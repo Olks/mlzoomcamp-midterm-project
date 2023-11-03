@@ -58,6 +58,23 @@ def concat_in_order(struct: dict) -> int:
     return concat
 
 
+def create_sleeping_time_vars(df):
+    df = df.with_columns(
+        pl.when(pl.col("hour").is_in([22,23,0,1,2,3,4,5,6,7,8]))
+        .then(1)
+        .otherwise(0)
+        .alias('night')
+    )
+    return df
+
+
+def calculate_metrics(y_pred,y_val,target):
+    precision = sum((y_pred==y_val) & (y_val==target)) / sum(y_pred==target)
+    recall = sum((y_pred==y_val) & (y_val==target)) / sum(y_val==target)
+    f1_score = 2 / ((1/precision) + (1/recall))
+    return precision, recall, f1_score
+
+
 def plot_data(df, idx, labels="target"):
 
     print(idx)
