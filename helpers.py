@@ -1,5 +1,10 @@
 import polars as pl
 
+import plotly.express as px
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
+
 def create_rolling_features(df):
 
     series_results = []
@@ -52,3 +57,77 @@ def concat_in_order(struct: dict) -> int:
     concat =  " ".join(sorted(vars))
     return concat
 
+
+def plot_data(df, idx, labels="target"):
+
+    print(idx)
+    df = df.to_pandas()
+    df = df.loc[df['series_id']==idx].sort_values(by='dt_minute')
+
+    fig = make_subplots(specs=[[{'secondary_y': True}]])
+    
+    # Plotting time series data
+    fig.add_trace(go.Scatter(x=df['dt_minute'], y=df['anglez'], mode='lines', name='anglez'), secondary_y=False)
+    fig.add_trace(go.Scatter(x=df['dt_minute'], y=df['enmo'], mode='lines', name='enmo'), secondary_y=True)
+    
+    # Plotting sleeping periods
+    onsets = df.loc[(df[labels].diff()!=0)&(df[labels]==1)]['dt_minute'].to_list()
+    wakeups = df.loc[(df[labels].diff()==-1)&(df[labels]==0)|(df[labels].diff()==1)&(df[labels]==2)]['dt_minute'].to_list()
+    for onset, wakeup in zip(onsets, wakeups) :
+        fig.add_vrect(
+            x0=onset, x1=wakeup,
+            fillcolor='gray', opacity=0.2,
+            layer='below', line_width=0
+        )
+        
+    # Add dummy trace for the legend
+    fig.add_trace(go.Scatter(
+        x=[None],
+        y=[None],
+        mode='lines',
+        line=dict(color='gray', width=0),
+        fill='tozeroy',
+        fillcolor='gray',
+        opacity=0.2,
+        name="Sleeping periods"
+        ))
+    
+    # Plotting notwear periods
+    not_wear_starts = df.loc[(df[labels].diff()>0)&(df[labels]==2)]['dt_minute'].to_list()
+    not_wear_ends = df.loc[(df[labels].diff()==-2)&(df[labels]==0)|(df[labels].diff()==-1)&(df[labels]==1)]['dt_minute'].to_list()
+
+    # if all time not-wear
+    stats = df.groupby("target").dt_minute.count()
+    not_wear_num = stats.loc[stats.index==2]
+    if not not_wear_num.empty and df.shape[0] == not_wear_num.tolist()[0]:
+        not_wear_starts = [df["dt_minute"].min()]
+        not_wear_ends = [df["dt_minute"].max()]
+        
+    if len(not_wear_ends) < len(not_wear_starts):
+        not_wear_ends += [df["dt_minute"].max()]
+    for start, end in zip(not_wear_starts, not_wear_ends):
+        fig.add_vrect(
+            x0=start, x1=end,
+            fillcolor='violet', opacity=0.2,
+            layer='below', line_width=0
+        )
+        
+    # Add dummy trace for the legend
+    fig.add_trace(go.Scatter(
+        x=[None],
+        y=[None],
+        mode='lines',
+        line=dict(color='violet', width=0),
+        fill='tozeroy',
+        fillcolor='violet',
+        opacity=0.7,
+        name="Not-wear periods"
+        ))
+
+    fig.update_layout(
+        title_text=f"Accelerometer Data - Full Minutes Averages<br><sub>series_id: {idx}</sub>", 
+        #template = 'ggplot2',
+        xaxis=dict(showgrid=False), yaxis=dict(showgrid=False), yaxis2=dict(showgrid=False)
+        )
+    
+    fig.show()
