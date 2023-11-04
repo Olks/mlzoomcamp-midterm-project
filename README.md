@@ -2,7 +2,14 @@
 This is a midterm project of ML Engineering Zoomcamp by DataTalks - Cohort 2023
 
 The goal of this project is to detect sleep from the data recorded by wrist-worn accelerometer for sleep monitoring.<br>
-This is a simplified problem of the one from the Kaggle competition - ["Child Mind Institute - Detect Sleep States - overview"](https://www.kaggle.com/competitions/child-mind-institute-detect-sleep-states).
+The data comes from the Kaggle competition - ["Child Mind Institute - Detect Sleep States - overview"](https://www.kaggle.com/competitions/child-mind-institute-detect-sleep-states).
+
+
+## Instructions how to run the project
+1. Clone the repository
+	- run `git clone git@github.com:Olks/mlzoomcamp-midterm-project.git` or `git clone https://github.com/Olks/mlzoomcamp-midterm-project.git`
+2. Install dependencies defined in Pipfile
+
 
 ### ML solution
 This is a <b>multiclass classification problem</b>. We distinct three target states:
