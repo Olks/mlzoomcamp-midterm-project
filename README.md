@@ -5,7 +5,8 @@ The goal of this project is to detect sleep from the data recorded by wrist-worn
 The data comes from the Kaggle competition - ["Child Mind Institute - Detect Sleep States - overview"](https://www.kaggle.com/competitions/child-mind-institute-detect-sleep-states).
 
 
-## Instructions how to run the project locally (you need to have a docker installed on your computer)
+## Instructions how to run the project locally 
+- You need to have a Docker, Python (check .python-version file) and pandas and requests libraries (check requirements.txt file) installed on your computer.
 1. Clone the repository, run:
 	- `git clone git@github.com:Olks/mlzoomcamp-midterm-project.git` or 
 	- `git clone https://github.com/Olks/mlzoomcamp-midterm-project.git`
