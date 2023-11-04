@@ -24,12 +24,12 @@ We compute corelations to exlude features that are highly correlated with some o
 #### Outputs
 Model predicts sleep state for each minute but the final output is the list of onsets and wakeups.
 
-|night_count|series_id|step|timestamp|event|score|
+| night_count | series_id | step | timestamp | event | score |
 |:---|:---|
-1	"038441c925bb"	5004	2018-08-14 22:27:00	"onset"	0.899833
-1	"038441c925bb"	10932	2018-08-15 06:41:00	"wakeup"	0.899833
-2	"038441c925bb"	20256	2018-08-15 19:38:00	"onset"	0.776172
-2	"038441c925bb"	27492	2018-08-16 05:41:00	"wakeup"	0.776172
+|1|"038441c925bb"|5004|2018-08-14 22:27:00|"onset"|0.899833
+|1|"038441c925bb"|10932|2018-08-15 06:41:00|"wakeup"|0.899833
+|2|"038441c925bb"|20256|2018-08-15 19:38:00|"onset"|0.776172
+|2|"038441c925bb"|27492|2018-08-16 05:41:00|"wakeup"|0.776172
 
 
 ## Contents:
