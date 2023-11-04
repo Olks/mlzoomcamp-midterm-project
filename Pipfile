@@ -10,6 +10,8 @@ plotly = "*"
 scikit-learn = "*"
 seaborn = "*"
 xgboost = "*"
+gunicorn = "*"
+flask = "*"
 
 [dev-packages]
 

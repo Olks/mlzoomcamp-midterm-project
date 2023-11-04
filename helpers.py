@@ -75,6 +75,89 @@ def calculate_metrics(y_pred,y_val,target):
     return precision, recall, f1_score
 
 
+def clean_predictions(df):
+
+    df_pl = pl.from_pandas(df)
+
+    series_reults = []
+    
+    for s in df_pl["series_id"].unique():
+        df_s = df_pl.filter(pl.col('series_id')==s).sort(by='dt_minute')
+
+         # Mark short breaks in sleep as sleep
+        df_s = df_s.sort(by='dt_minute')
+        df_s = df_s.sort(by=['series_id','dt_minute']).with_columns(
+            pl.col('prediction').rolling_min(window_size=10, center=False).alias('long_sleep'),
+            pl.col('step').rolling_min(window_size=10, center=False).alias('long_sleep_start'),
+            pl.col('step').rolling_max(window_size=10, center=False).alias('long_sleep_end')
+        )
+
+        # Clean onsets - they all start 9 min late
+        pred_onsets = df_s.filter((df_s['long_sleep'].diff()!=0)&(df_s['long_sleep']==1))['long_sleep_start'].to_list()
+        for onset in pred_onsets:
+            df_s = df_s.with_columns(
+             pl.when((pl.col('step')<=onset+12*9)&(pl.col('step')>=onset)).then(1)
+            .otherwise(pl.col('long_sleep'))
+            .alias('long_sleep'))
+            
+        pred_onsets = df_s.filter((df_s['long_sleep'].diff()!=0)&(df_s['long_sleep']==1))['step'].to_list()
+        pred_wakeups = df_s.filter((df_s['long_sleep'].diff()==-1)&(df_s['long_sleep']==0)|(df_s['long_sleep'].diff()==1)&(df_s['long_sleep']==2))['step'].to_list() 
+        
+        # mark breaks in sleep that are less or equal to 30 min as sleep
+        short_break_periods = [(wakeup, onset) for onset, wakeup in zip(pred_onsets[1:], pred_wakeups[:-1]) if onset - wakeup <= 12 * 30]
+        
+        for break_start, break_end in short_break_periods:
+            df_s = df_s.with_columns(
+             pl.when((pl.col('step')>=break_start)&(pl.col('step')<=break_end)).then(1)
+            .otherwise(pl.col('long_sleep'))
+            .alias('long_sleep'))
+
+        # Ignore signle short sleep times
+        pred_onsets = df_s.filter((df_s['long_sleep'].diff()!=0)&(df_s['long_sleep']==1))['long_sleep_start'].to_list()
+        pred_wakeups = df_s.filter((df_s['long_sleep'].diff()==-1)&(df_s['long_sleep']==0)|(df_s['long_sleep'].diff()==1)&(df_s['long_sleep']==2))['long_sleep_end'].to_list() 
+        short_sleep_times = [(onset, wakeup) for onset, wakeup in zip(pred_onsets, pred_wakeups) if wakeup - onset <= 12 * 30]
+        for onset, wakeup in short_sleep_times:
+            df_s = df_s.with_columns(
+             pl.when((pl.col('step')>=onset)&(pl.col('step')<=wakeup)).then(0)
+            .otherwise(pl.col('long_sleep'))
+            .alias('long_sleep'))
+        
+        series_reults.append(df_s)
+    
+    df = pl.concat(series_reults).to_pandas()
+    return df
+
+
+def get_events(df, idx=None, target='long_sleep'):
+    if not idx:
+        idx = df['series_id'].unique()[0]
+        
+    df = df.filter(pl.col("series_id")==idx)
+    events = pl.DataFrame(schema={'night_count':int, 'series_id':str, 'step':int, 'timestamp': pl.Datetime, 'event':str, 'score':float})
+    
+    pred_onsets = df.filter((df[target].diff()!=0)&(df[target]==1))['step'].to_list()
+    pred_wakeups = df.filter((df[target].diff()==-1)&(df[target]==0)|(df[target].diff()==1)&(df[target]==2))['step'].to_list()
+    sleep_periods = [(onset, wakeup) for onset, wakeup in zip(pred_onsets, pred_wakeups)]
+
+    night_count = 0
+    for onset, wakeup in sleep_periods:
+        night_count += 1
+        # Scoring using mean probability over period
+        score = df.filter((pl.col('step') >= onset) & (pl.col('step') <= wakeup))['probability'].mean()
+        onset_time = df.filter(pl.col("step")==onset)["dt_minute"][0]
+        wakeup_time = df.filter(pl.col("step")==wakeup)["dt_minute"][0]
+        # Adding sleep event to dataframe
+        events = events.vstack(pl.DataFrame().with_columns(
+            pl.Series([night_count, night_count]).alias('night_count'), 
+            pl.Series([idx, idx]).alias('series_id'), 
+            pl.Series([onset, wakeup]).alias('step'),
+            pl.Series([onset_time, wakeup_time]).alias('timestamp'),
+            pl.Series(['onset', 'wakeup']).alias('event'),
+            pl.Series([score, score]).alias('score')
+        ))
+    return events
+
+
 def plot_data(df, idx, labels="target"):
 
     print(idx)
