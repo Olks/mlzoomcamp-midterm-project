@@ -6,8 +6,9 @@ The data comes from the Kaggle competition - ["Child Mind Institute - Detect Sle
 
 
 ## Instructions how to run the project
-1. Clone the repository
-	- run `git clone git@github.com:Olks/mlzoomcamp-midterm-project.git` or `git clone https://github.com/Olks/mlzoomcamp-midterm-project.git`
+1. Clone the repository. Run:
+	- `git clone git@github.com:Olks/mlzoomcamp-midterm-project.git` or 
+	- `git clone https://github.com/Olks/mlzoomcamp-midterm-project.git`
 2. Install dependencies defined in Pipfile
 
 
