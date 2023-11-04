@@ -8,9 +8,11 @@ COPY ["Pipfile", "Pipfile.lock", "./"]
 
 RUN pipenv install --system --deploy
 
+COPY ["predict.py", "model.bin", "helpers.py", "./"]
+
 RUN mkdir -p /data
 
-COPY ["predict.py", "model.bin", "helpers.py", "data/features_to_exclude.txt", "data/test_data.csv", "./"]
+COPY ["data/features_to_exclude.txt", "data/test_data.csv", "./data/"]
 
 EXPOSE 9696
 
