@@ -22,8 +22,10 @@ The data comes from the Kaggle competition - ["Child Mind Institute - Detect Sle
 	- `curl -X POST -H "Content-Type: application/json" -d @data/test_data.json http://localhost:9696/predict` 
 		- should run without additional installations 
 		- returns -> json with onset and wakeup events
+5. To run notebooks you need to install all the dependencies:
+	- in Terminal go to the project directory and run `pipenv install` and then `pipenv shell` (or first `pip install pipenv` if you don't have pipenv installed)
+	- now you can open noetbooks with Jupyter run e.g. `jupyter lab`  
  
-
 
 ### ML solution
 This is a <b>multiclass classification problem</b>. We distinct three target states:
