@@ -133,7 +133,7 @@ def get_events(df, idx=None, target='long_sleep'):
         idx = df['series_id'].unique()[0]
         
     df = df.filter(pl.col("series_id")==idx)
-    events = pl.DataFrame(schema={'night_count':int, 'series_id':str, 'step':int, 'timestamp': pl.Datetime, 'event':str, 'score':float})
+    events = pl.DataFrame(schema={'night_nr':int, 'series_id':str, 'step':int, 'timestamp': pl.Datetime, 'event':str, 'score':float})
     
     pred_onsets = df.filter((df[target].diff()!=0)&(df[target]==1))['step'].to_list()
     pred_wakeups = df.filter((df[target].diff()==-1)&(df[target]==0)|(df[target].diff()==1)&(df[target]==2))['step'].to_list()
@@ -148,7 +148,7 @@ def get_events(df, idx=None, target='long_sleep'):
         wakeup_time = df.filter(pl.col("step")==wakeup)["dt_minute"][0]
         # Adding sleep event to dataframe
         events = events.vstack(pl.DataFrame().with_columns(
-            pl.Series([night_count, night_count]).alias('night_count'), 
+            pl.Series([night_count, night_count]).alias('night_nr'), 
             pl.Series([idx, idx]).alias('series_id'), 
             pl.Series([onset, wakeup]).alias('step'),
             pl.Series([onset_time, wakeup_time]).alias('timestamp'),

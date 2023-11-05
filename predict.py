@@ -4,7 +4,7 @@ import polars as pl
 import pandas as pd
 import xgboost as xgb
 
-from io import StringIO
+from io import StringIO, BytesIO
 
 from flask import Flask
 from flask import request
@@ -23,13 +23,18 @@ app = Flask('sleep_detection')
 @app.route('/predict', methods=['POST'])
 def predict():
 	sleep_series = request.get_json()
-	df = pd.read_json(StringIO(sleep_series))
+	df = pd.DataFrame(sleep_series)
+	print(df)
+	# df = pd.read_json(sleep_series)
 	df_pl = pl.from_pandas(df)
+	print(df_pl)
 
 	# Create features
 	df_pl = df_pl.with_columns(
-		pl.col('dt_minute').str.to_datetime(),
-		pl.col('dt_minute').str.to_datetime().dt.hour().alias('hour')
+		pl.from_epoch("dt_minute", time_unit="ms"),
+		pl.from_epoch("dt_minute", time_unit="ms").dt.hour().alias('hour')
+		# pl.col('dt_minute').str.to_datetime(),
+		# pl.col('dt_minute').str.to_datetime().dt.hour().alias('hour')
 	)
 
 	df_pl = create_sleeping_time_vars(df_pl)
