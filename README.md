@@ -9,7 +9,7 @@ The data comes from the Kaggle competition - ["Child Mind Institute - Detect Sle
 - You need to have a Docker installed on your computer.
 1. Clone the repository, run:
 	- `git clone https://github.com/Olks/mlzoomcamp-midterm-project.git`
-2. Build docker image from Dockerfile, run:   (it may take a few minutes)
+2. Go to project directory and build docker image from Dockerfile, run:   (it may take a few minutes)
 	- `docker build -t sleep-detection .`
 3. Start a container from the sleep-detection image with:
 	- `docker run -it --rm -p 9696:9696 sleep-detection`  
