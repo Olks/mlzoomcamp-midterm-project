@@ -1,5 +1,5 @@
 # ML Zoomcamp midterm project - Sleep Detection
-This is a midterm project of ML Engineering Zoomcamp by DataTalks - Cohort 2023
+This is a midterm project of [ML Engineering Zoomcamp by DataTalks](https://github.com/DataTalksClub/machine-learning-zoomcamp) - Cohort 2023
 
 The goal of this project is to detect sleep from the data recorded by wrist-worn accelerometer for sleep monitoring.<br>
 The data comes from the Kaggle competition - ["Child Mind Institute - Detect Sleep States - overview"](https://www.kaggle.com/competitions/child-mind-institute-detect-sleep-states).
