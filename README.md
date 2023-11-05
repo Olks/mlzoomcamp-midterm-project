@@ -31,14 +31,15 @@ The data comes from the Kaggle competition - ["Child Mind Institute - Detect Sle
 
 ## Deployment in AWS Elastic Beanstalk
 1. Create an instance of EB in AWS Cloud -> "sleep-detection-env"
-`$ eb init -p docker -r eu-west-1 sleep-detection-env`
-`$ eb create sleep-detection-env`
-`$ eb logs sleep-detection-env`
-`$ eb terminate sleep-detection-env`
+- `$ eb init -p docker -r eu-west-1 sleep-detection-env`
+- `$ eb create sleep-detection-env`
+- `$ eb logs sleep-detection-env`
+- `$ eb terminate sleep-detection-env`
 2. Copy host address and paste in `predict-test-aws-eb.py`.
 3. Run `python predict-test-aws-eb.py`
 
 <img src="predict-test-aws-eb.png""/>
+
 <img src="aws-eb-test.jpg""/>
 
 
@@ -104,7 +105,6 @@ It comprises of every 5 seconds accelerometer signals transformed into two varia
 - <b>ENMO</b>: The Euclidean Norm Minus One (ENMO) with negative values rounded to zero.
   <br>It has been shown to correlate with the magnitude of acceleration and human energy expenditure.
   <br>ENMO is computed as follows:<br>
-  <!-- width="350" height="350" -->
   <img src="enmo.jpg" width="310" height="70"/>
 - <b>anglez</b>: Z-angle, computed using the equation below; corresponds to the angle between the accelerometer axis perpendicular to the skin surface and the horizontal plane.
   <br>Any change (or lack of change) in the z-angle over successive time intervals may be an indicator of posture change.<br>
