@@ -37,13 +37,9 @@ The data comes from the Kaggle competition - ["Child Mind Institute - Detect Sle
 - `$ eb terminate sleep-detection-env`
 2. Copy host address and paste in `predict-test-aws-eb.py`.
 3. Run `python predict-test-aws-eb.py`
-
 <img src="predict-test-aws-eb.png"/>
-
 <img src="aws-eb-test.jpg"/>
 
-
- 
 ### ML solution
 This is a <b>multiclass classification problem</b>. We distinct three target states:
 - asleep (1)
@@ -83,8 +79,8 @@ For this project we use the subset of Kaggle data.<br>
 - 3 first days of of each 120 series (originally they have about 14 or more days).<br>
 - One minutes means of "anglez" and "enmo" features (originally those are every 5 seconds vaues).<br>
 
-Below, there is a plot for one series_id. 
-<img src="series_plot.png" width="1500" height="350"/>
+Below, there is a plot for one series_id.
+<img src="series_plot.png"/>
 
 The final dataset that will be used in the project have the following fields:
 
