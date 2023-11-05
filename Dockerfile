@@ -12,7 +12,7 @@ COPY ["predict.py", "model.bin", "helpers.py", "./"]
 
 RUN mkdir -p /data
 
-COPY ["data/features_to_exclude.txt", "data/test_data.csv", "./data/"]
+COPY ["data/features_to_exclude.txt", "data/test_data.json", "./data/"]
 
 EXPOSE 9696
 
