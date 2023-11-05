@@ -27,8 +27,22 @@ The data comes from the Kaggle competition - ["Child Mind Institute - Detect Sle
 		- note that Pipenv file contain Linux and Mac specific library -> <b>gunicorn</b>. If you use Windows please remove it from Pipfile.
 		- if you're not using pipenv then remember to install <b>Polars</b> with `pip install "polars[all]"`
 	- now you can open noetbooks with Jupyter run e.g. `jupyter lab`  
- 
+	
 
+## Deployment in AWS Elastic Beanstalk
+1. Create an instance of EB in AWS Cloud -> "sleep-detection-env"
+`$ eb init -p docker -r eu-west-1 sleep-detection-env`
+`$ eb create sleep-detection-env`
+`$ eb logs sleep-detection-env`
+`$ eb terminate sleep-detection-env`
+2. Copy host address and paste in `predict-test-aws-eb.py`.
+3. Run `python predict-test-aws-eb.py`
+
+<img src="predict-test-aws-eb.png""/>
+<img src="aws-eb-test.jpg""/>
+
+
+ 
 ### ML solution
 This is a <b>multiclass classification problem</b>. We distinct three target states:
 - asleep (1)
