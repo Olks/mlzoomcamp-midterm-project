@@ -38,9 +38,9 @@ The data comes from the Kaggle competition - ["Child Mind Institute - Detect Sle
 2. Copy host address and paste in `predict-test-aws-eb.py`.
 3. Run `python predict-test-aws-eb.py`
 
-<img src="predict-test-aws-eb.png""/>
+<img src="predict-test-aws-eb.png"/>
 
-<img src="aws-eb-test.jpg""/>
+<img src="aws-eb-test.jpg"/>
 
 
  
