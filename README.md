@@ -23,7 +23,9 @@ The data comes from the Kaggle competition - ["Child Mind Institute - Detect Sle
 		- should run without additional installations 
 		- returns -> json with onset and wakeup events
 5. To run notebooks you need to install all the dependencies:
-	- in Terminal go to the project directory and run `pipenv install` and then `pipenv shell` (or first `pip install pipenv` if you don't have pipenv installed)
+	- in Terminal go to the project directory and run `pipenv install` and then `pipenv shell` (or first `pip install pipenv` if you don't have pipenv installed) 
+		- note that Pipenv file contain Linux and Mac specific library -> <b>gunicorn</b>. If you use Windows please remove it from Pipfile.
+		- if you're not using pipenv the remember to <b>install Polars with pip install "polars[all]"</b>
 	- now you can open noetbooks with Jupyter run e.g. `jupyter lab`  
  
 
