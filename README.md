@@ -20,7 +20,7 @@ The data comes from the Kaggle competition - ["Child Mind Institute - Detect Sle
 		- need to have Python, requests, pandas and numpy installed locally - check predict-test-requirements.txt and .python_version files>
 		- returns -> table of onset and wakeup events 
 	
-	<br>or<br> 
+	or<br> 
 	- `curl -X POST -H "Content-Type: application/json" -d @data/test_data.json http://localhost:9696/predict` 
 		- should run without additional installations 
 		- returns -> json with onset and wakeup events
