@@ -15,7 +15,7 @@ The data comes from the Kaggle competition - ["Child Mind Institute - Detect Sle
 	- `docker build -t sleep-detection .`
 3. Start a container from the sleep-detection image with:
 	- `docker run -it --rm -p 9696:9696 sleep-detection`  
-4. To run test prediction open another terminal and run:
+4. To run test prediction (reading sample accelerometer data from data/test_data.json file) open another terminal and run:
 	- `python predict-test.py` 
 		- need to have Python, requests, pandas and numpy installed locally - check predict-test-requirements.txt and .python_version files>
 		- returns -> table of onset and wakeup events 
