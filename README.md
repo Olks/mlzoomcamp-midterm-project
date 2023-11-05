@@ -8,15 +8,21 @@ The data comes from the Kaggle competition - ["Child Mind Institute - Detect Sle
 ## Instructions how to run the project locally 
 - You need to have a Docker installed on your computer.
 1. Clone the repository, run:
-	- `git clone git@github.com:Olks/mlzoomcamp-midterm-project.git` or 
+	- `git clone git@github.com:Olks/mlzoomcamp-midterm-project.git`
+	<br>or<br>
 	- `git clone https://github.com/Olks/mlzoomcamp-midterm-project.git`
 2. Build docker image from Dockerfile, run:   (it may take a few minutes)
 	- `docker build -t sleep-detection .`
 3. Start a container from the sleep-detection image with:
 	- `docker run -it --rm -p 9696:9696 sleep-detection`  
 4. To run test prediction open another terminal and run:
-	- `python predict-test.py` <need to have Python, requests, pandas and numpy installed locally - check predict-test-requirements.txt and .python_version files> [returns -> table of onset and wakeup events] or 
-	- `curl -X POST -H "Content-Type: application/json" -d @data/test_data.json http://localhost:9696/predict` <should run without additional installations> [returns -> json with onset and wakeup events]
+	- `python predict-test.py` 
+		- need to have Python, requests, pandas and numpy installed locally - check predict-test-requirements.txt and .python_version files>
+		- returns -> table of onset and wakeup events 
+	<br>or<br> 
+	- `curl -X POST -H "Content-Type: application/json" -d @data/test_data.json http://localhost:9696/predict` 
+		- should run without additional installations 
+		- returns -> json with onset and wakeup events
  
 
 
